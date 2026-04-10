@@ -1,94 +1,113 @@
-# T-Rex Runner Game
+# Testing with GitHub Copilot Agents
 
-A browser-based T-Rex Runner game with a Node.js high-score API, compatible with Playwright for automated testing.
+> **Audience:** Developers, QA Engineers, Tech Leads  |  **Total Duration:** ~60 minutes  |  **Pre-requisites:** GitHub Copilot access, Node.js 18+, VS Code with GitHub Copilot Chat extension
 
-## Tech Stack
+## What You Will Build
 
-| Layer   | Technology                     |
-|---------|--------------------------------|
-| UI      | HTML, CSS, Vanilla JavaScript  |
-| API     | Node.js + Express              |
-| Testing | Playwright                     |
+A fully automated test suite around the **T-Rex Runner** — a browser-based arcade game backed by a Node.js high-score API. You will use GitHub Copilot Chat (Ask & Agent modes), GitHub Copilot CLI, custom agents, and the Playwright MCP server to generate and validate every layer of the testing pyramid.
+
+| Component | Description |
+|-----------|-------------|
+| T-Rex Runner UI | HTML + Vanilla JS canvas game served at `http://127.0.0.1:8080` |
+| High-Score API | Node.js + Express REST API served at `http://localhost:3000` |
+| Unit Tests | Jest + Supertest tests for API score logic |
+| Integration Tests | Playwright tests verifying UI ↔ API communication with HTML reports |
+| Smoke Tests | Playwright E2E tests confirming the canvas renders and game starts |
+| Functional Tests | Full Playwright E2E tests for game interactions and high-score flow |
+| MCP-Driven Tests | Accessibility-based Playwright tests generated via the MCP server |
+
+> The application code lives in `trex-runner/`. Copilot agents do the heavy lifting — your job is to learn how to direct them.
 
 ## Prerequisites
 
-- Node.js >= 18
-- npm
+- [VS Code](https://code.visualstudio.com/download) with the [GitHub Copilot Chat extension](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat)
+- [Node.js 18+](https://nodejs.org/) and npm
+- [Git CLI](https://git-scm.com/install/)
+- [GitHub CLI (`gh`)](https://cli.github.com/) with the [Copilot CLI extension](https://docs.github.com/en/copilot/how-tos/copilot-cli/install-copilot-cli)
+- GitHub Copilot subscription (Individual, Business, or Enterprise)
 
-## Project Structure
+## Workshop Map
+
+### Core Track (~90 minutes) — Complete in Order
+
+| # | Exercise | Copilot Feature | Duration |
+|---|----------|-----------------|----------|
+| 01 | [Setup, VS Code & GitHub Copilot](workshop/exercise-01-setup-and-copilot.md) | Copilot Chat setup & orientation | 5 min |
+| 02 | [Run the T-Rex Runner Application](workshop/exercise-02-run-trex-runner.md) | Terminal + Copilot Chat | 5 min |
+| 03 | [Initialize Playwright & Unit Tests](workshop/exercise-03-initialize-playwright-unit-tests.md) | Copilot Chat — Ask Mode | 10 min |
+| 04 | [Integration Tests + HTML Report](workshop/exercise-04-integration-tests.md) | Copilot Chat — Ask Mode | 10 min |
+| 05 | [Copilot Chat Agent Mode: First UI Test](workshop/exercise-05-background-agent.md) | Copilot Chat — Agent Mode | 10 min |
+| 06 | [Functional E2E Tests with Playwright](workshop/exercise-06-functional-e2e.md) | Copilot Chat — Ask Mode | 15 min |
+| 07 | [Copilot CLI: Natural Language Test Commands](workshop/exercise-07-copilot-cli.md) | GitHub Copilot CLI | 15 min |
+| 08 | [Custom Agent: Full Test Suite Orchestration](workshop/exercise-08-skills.md) | Agent Mode + Custom Instructions | 10 min |
+| 09 | [Playwright MCP: Accessibility-Based Testing](workshop/exercise-09-playwright-mcp.md) | MCP — Playwright MCP Server | 10 min |
+
+## Workspace Structure After Workshop
 
 ```
-trex-runner/
-├── api/
-│   ├── server.js       # Express API server
-│   └── package.json
-└── ui/
-    ├── index.html      # Game UI
-    └── game.js
+Testing-with-Agents-GHCP/
+├── .github/
+│   └── copilot-instructions.md        ← Exercise 08
+├── trex-runner/
+│   ├── api/
+│   │   ├── server.js                  ← Modified Exercise 03
+│   │   ├── package.json
+│   │   └── tests/
+│   │       └── score.test.js          ← Exercise 03
+│   ├── ui/
+│   │   ├── index.html                 ← Modified Exercise 04
+│   │   └── game.js                    ← Modified Exercise 04
+│   ├── tests/
+│   │   ├── integration.spec.ts        ← Exercise 04
+│   │   ├── trex-smoke.spec.ts         ← Exercise 05
+│   │   ├── trex-functional.spec.ts    ← Exercise 06
+│   │   └── trex-mcp.spec.ts           ← Exercise 09
+│   └── playwright.config.ts           ← Exercise 03
+└── workshop/
+    ├── exercise-01-setup-and-copilot.md
+    ├── exercise-02-run-trex-runner.md
+    ├── exercise-03-initialize-playwright-unit-tests.md
+    ├── exercise-04-integration-tests.md
+    ├── exercise-05-background-agent.md
+    ├── exercise-06-functional-e2e.md
+    ├── exercise-07-copilot-cli.md
+    ├── exercise-08-skills.md
+    └── exercise-09-playwright-mcp.md
 ```
 
-## Setup & Run
+## Key Features Covered
 
-### 1. Start the API Server
+| Feature | Description |
+|---------|-------------|
+| Copilot Chat — Ask Mode | Generate test scaffolding, fix errors, and explain code inline |
+| Copilot Chat — Agent Mode | Delegate multi-file test generation to an autonomous agent |
+| Custom Instructions | Scope agent behaviour with `.github/copilot-instructions.md` |
+| GitHub Copilot CLI | Run `gh copilot explain` and `gh copilot suggest` from the terminal |
+| Jest + Supertest | Unit tests for Express API score logic with full isolation |
+| Playwright Integration Tests | Route mocking to verify UI ↔ API wiring |
+| Playwright E2E Tests | Full game-flow tests including keyboard input and score validation |
+| HTML Test Reports | `npx playwright show-report` for rich visual test results |
+| Playwright MCP Server | AI-driven, accessibility-selector-based test generation |
 
-```bash
-cd trex-runner\api
-npm install
-node server.js
-```
+## Getting Started
 
-The API runs at **http://localhost:3000**.
+1. Click **"Use this template"** → **"Create a new repository"**
+2. Set the owner to your GitHub account, enter a name (e.g., `testing-agents-workshop`), and click **"Create repository"**
+3. Clone the repository locally and open it in VS Code
+4. Start the API server and UI server (see the [Run the App](workshop/exercise-02-run-trex-runner.md) exercise)
+5. Begin with [Exercise 01 — Setup, VS Code & GitHub Copilot](workshop/exercise-01-setup-and-copilot.md)
 
-#### API Endpoints
+## Further Learning
 
-| Method | Endpoint         | Description                        |
-|--------|------------------|------------------------------------|
-| GET    | `/score`         | Returns the current high score     |
-| POST   | `/score/:value`  | Submits a score; updates if higher |
+- [Create Applications with the Copilot CLI](https://github.com/skills/create-applications-with-the-copilot-cli)
+- [Integrate MCP with Copilot](https://github.com/skills/integrate-mcp-with-copilot)
+- [E2E AI SDLC with GitHub Copilot](https://github.com/CanarysAutomations/E2E-AI-SDLC-Build-with-Github-Copilot)
+- [Debugging and Automation with GHCP](https://github.com/CanarysAutomations/Debugging-and-Automation-with-GHCP)
+- [Playwright Documentation](https://playwright.dev/docs/intro)
+- [GitHub Copilot Documentation](https://docs.github.com/en/copilot)
 
-#### Port Already in Use?
+---
 
-If port 3000 is already occupied, kill the process first (PowerShell):
+> **Note:** Complete the Core Track (Ex 01–09) in order — each exercise builds on the previous one.
 
-```powershell
-Stop-Process -Id (Get-NetTCPConnection -LocalPort 3000 | Select-Object -ExpandProperty OwningProcess) -Force
-```
-
-Then start the server again:
-
-```bash
-cd trex-runner\api
-node server.js
-```
-
-### 2. Run the UI
-
-The UI must be served over HTTP (not opened as a file) so it can communicate with the API.
-
-Navigate to the `ui` folder and start a local HTTP server:
-
-```bash
-cd trex-runner\ui
-npx http-server
-```
-
-Then open your browser at:
-
-- **http://127.0.0.1:8080** (local)
-- **http://\<your-ip\>:8080** (network, shown in terminal output)
-
-> **Note:** `npx http-server` will prompt to install `http-server` on first run — press `y` to confirm.
-
-#### Port Already in Use?
-
-If port 8080 is already occupied, specify a different port:
-
-```bash
-npx http-server -p 8081
-```
-
-Then open **http://127.0.0.1:8081** instead.
-
-### 3. Playwright (Optional)
-
-Point Playwright to **http://127.0.0.1:8080** (with the `http-server` running as above).
+> **Instructor Note:** Each exercise contains copy-paste prompts — attendees never write code from scratch. Debrief after each exercise by reviewing the generated files before proceeding.

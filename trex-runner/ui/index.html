@@ -3,12 +3,14 @@
 <head>
 <title>T-Rex Runner</title>
 <style>
-body{margin:0;background:#f7f7f7}
+body{margin:0;background:#f7f7f7;font-family:sans-serif;text-align:center}
 canvas{display:block;margin:auto;background:#fff}
+#highscore{margin-top:8px;font-size:14px;color:#555}
 </style>
 </head>
 <body>
-<canvas id="game" width="800" height="200"></canvas>
+<canvas id="game" aria-label="game-canvas" width="800" height="200"></canvas>
+<p id="highscore" aria-label="high-score">High Score: 0</p>
 <script src="game.js"></script>
 </body>
 </html>

@@ -13,4 +13,8 @@ app.post('/score/:value', (req,res)=>{
   res.json({highScore});
 });
 
-app.listen(3000, ()=>console.log('API running on 3000'));
+if (require.main === module) {
+  app.listen(3000, ()=>console.log('API running on 3000'));
+}
+
+module.exports = { app, reset: () => { highScore = 0; } };
