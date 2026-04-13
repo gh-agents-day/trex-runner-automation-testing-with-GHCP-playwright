@@ -27,7 +27,37 @@ To watch the MCP agent automate the game **inside VS Code** (no external browser
 3. Look for the **share icon** (↑ arrow) near the browser address bar
 4. Click it → select **"Share this browser page with agents"** → click **Allow**
 
-> **Headed MCP alternative**: Edit `.vscode/mcp.json` and add `"--headed"` to the `args` array under the `playwright` server entry. This opens a visible Chromium window the agent controls directly:
+> **Configure Playwright MCP via VS Code Tools (recommended)**
+>
+> Full reference: [Playwright MCP — Getting Started](https://playwright.dev/docs/getting-started-mcp)
+>
+> **Option A — Configure from the VS Code Tools panel (no manual JSON editing)**
+>
+> 1. In **Copilot Chat**, click the **Tools** icon (wrench / `+` button next to the prompt box)
+> 2. In the tools panel that opens, type **`playwright`** in the search field
+> 3. Locate **`microsoft.playwright-mcp`** (`@playwright/mcp`) in the results
+> 4. Click the **gear / settings icon** next to it — VS Code opens the MCP server's JSON entry in `.vscode/mcp.json`
+> 5. Confirm (or paste) the configuration below, then save the file:
+>
+> ```json
+> {
+>   "servers": {
+>     "playwright": {
+>       "type": "stdio",
+>       "command": "npx",
+>       "args": ["@playwright/mcp@latest"]
+>     }
+>   }
+> }
+> ```
+>
+> 6. Click **Start** (or the play icon) next to the server entry in the Tools panel to start the MCP server
+> 7. The status indicator next to `playwright` turns **green** — the server is running
+>
+> **Option B — Headed mode (visible Chromium window)**
+>
+> To watch the agent control a real browser window, add `"--headed"` to the `args` array in `.vscode/mcp.json`:
+>
 > ```json
 > {
 >   "servers": {
@@ -39,7 +69,8 @@ To watch the MCP agent automate the game **inside VS Code** (no external browser
 >   }
 > }
 > ```
-> Restart VS Code after saving to apply the change.
+>
+> Save the file, then restart the MCP server from the Tools panel (stop → start). VS Code will open a visible Chromium window that the agent controls directly.
 
 ---
 

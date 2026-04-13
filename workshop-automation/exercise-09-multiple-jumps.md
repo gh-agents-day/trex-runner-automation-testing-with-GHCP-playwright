@@ -94,45 +94,6 @@ Expected output:
 ✓  game runs for 4 seconds without errors or reload
 ✓  rapid Space presses do not crash or freeze the game
 ```
-
----
-
-## What the Generated Test Looks Like
-
-```typescript
-test('rapid Space presses do not crash or freeze the game', async ({ page }) => {
-  const errors: string[] = [];
-  page.on('pageerror', err => errors.push(err.message));
-
-  await page.route('http://localhost:3000/**', route =>
-    route.fulfill({ json: { highScore: 0 } })
-  );
-  await disableCollision(page);
-  await page.goto('/');
-
-  await expect(page.getByLabel('game-canvas')).toBeVisible();
-
-  // 10 rapid Space presses — only fires when dino is grounded (y >= 150)
-  for (let i = 0; i < 10; i++) {
-    await page.keyboard.press('Space');
-    await page.waitForTimeout(200);
-  }
-
-  // Canvas still visible
-  await expect(page.getByLabel('game-canvas')).toBeVisible();
-
-  // No JS errors
-  expect(errors).toHaveLength(0);
-
-  // No reload
-  expect(page.url()).toBe('http://127.0.0.1:8080/');
-
-  // Game loop intact
-  const score = await page.evaluate(() => (window as any).gameScore);
-  expect(score).toBeGreaterThanOrEqual(0);
-});
-```
-
 ---
 
 ## Verify

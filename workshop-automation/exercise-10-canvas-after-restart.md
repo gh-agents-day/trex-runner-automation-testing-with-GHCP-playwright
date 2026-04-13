@@ -100,44 +100,6 @@ Expected output:
 ✓  canvas still visible after collision reload
 ✓  high score updates and canvas survives full restart cycle
 ```
-
----
-
-## What the Generated Test Looks Like
-
-```typescript
-test('high score updates and canvas survives full restart cycle', async ({ page }) => {
-  let callCount = 0;
-
-  await page.route('http://localhost:3000/score', route => {
-    // First call (initial load) → 0; second call (after reload) → 5
-    route.fulfill({ json: { highScore: callCount++ === 0 ? 0 : 5 } });
-  });
-  await page.route('http://localhost:3000/score/**', route =>
-    route.fulfill({ json: {} })
-  );
-
-  // Set up POST and reload watchers before navigating
-  await Promise.all([
-    page.waitForNavigation({ timeout: 10000 }),
-    page.waitForRequest(
-      req => req.url().includes('/score/') && req.method() === 'POST',
-      { timeout: 10000 }
-    ),
-    page.goto('/'),
-  ]);
-
-  // Post-reload assertions
-  await expect(page.getByLabel('game-canvas')).toBeVisible();
-  await expect(page.getByLabel('high-score')).toContainText('5');
-
-  // Game loop restarted — score should reset to 0
-  const score = await page.evaluate(() => (window as any).gameScore);
-  expect(score).toBeGreaterThanOrEqual(0);
-  expect(callCount).toBeGreaterThanOrEqual(2); // GET fired twice
-});
-```
-
 ---
 
 ## Full Test Suite Summary
