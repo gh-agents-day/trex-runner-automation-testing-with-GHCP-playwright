@@ -1,0 +1,5 @@
+# Playwright MCP session logs
+.playwright-mcp/
+
+# Local VS Code agent definition files
+.vscode/*.agent.md

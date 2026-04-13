@@ -36,10 +36,10 @@ A fully automated test suite around the **T-Rex Runner** — a browser-based arc
 | 02 | [Run the T-Rex Runner Application](workshop/exercise-02-run-trex-runner.md) | Terminal + Copilot Chat | 5 min |
 | 03 | [Initialize Playwright & Unit Tests](workshop/exercise-03-initialize-playwright-unit-tests.md) | Copilot Chat — Ask Mode | 10 min |
 | 04 | [Integration Tests + HTML Report](workshop/exercise-04-integration-tests.md) | Copilot Chat — Ask Mode | 10 min |
-| 05 | [Copilot Chat Agent Mode: First UI Test](workshop/exercise-05-background-agent.md) | Copilot Chat — Agent Mode | 10 min |
+| 05 | [Copilot Chat Agent Mode: First UI Test](workshop/exercise-05-local-agent-ui-test.md) | Copilot Chat — Agent Mode | 10 min |
 | 06 | [Functional E2E Tests with Playwright](workshop/exercise-06-functional-e2e.md) | Copilot Chat — Ask Mode | 15 min |
 | 07 | [Copilot CLI: Natural Language Test Commands](workshop/exercise-07-copilot-cli.md) | GitHub Copilot CLI | 15 min |
-| 08 | [Custom Agent: Full Test Suite Orchestration](workshop/exercise-08-skills.md) | Agent Mode + Custom Instructions | 10 min |
+| 08 | [Custom Agent: Full Test Suite Orchestration](workshop/exercise-08-instruction-skills.md) | Agent Mode + Custom Instructions | 10 min |
 | 09 | [Playwright MCP: Accessibility-Based Testing](workshop/exercise-09-playwright-mcp.md) | MCP — Playwright MCP Server | 10 min |
 
 ## Workspace Structure After Workshop
@@ -68,10 +68,10 @@ Testing-with-Agents-GHCP/
     ├── exercise-02-run-trex-runner.md
     ├── exercise-03-initialize-playwright-unit-tests.md
     ├── exercise-04-integration-tests.md
-    ├── exercise-05-background-agent.md
+    ├── exercise-05-local-agent-ui-test.md
     ├── exercise-06-functional-e2e.md
     ├── exercise-07-copilot-cli.md
-    ├── exercise-08-skills.md
+    ├── exercise-08-instruction-skills.md
     └── exercise-09-playwright-mcp.md
 ```
 

@@ -42,7 +42,7 @@ export default defineConfig({
 Create the tests directory inside `trex-runner/`:
 
 ```bash
-cd trex-runner
+cd trex-runner/api
 mkdir tests
 ```
 

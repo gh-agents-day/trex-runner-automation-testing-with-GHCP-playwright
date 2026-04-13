@@ -97,7 +97,7 @@ Suggest the correct locator and assertion strategy.
 
 ## Step 6 — Run All Tests from the VS Code Testing Panel
 
-1. Open the **Testing** panel (flask icon in Activity Bar)
+1. Open the **Testing** folder inside the **trex-runner**
 2. Expand the tree to see all spec files
 3. Click ▶ next to `functional.spec.ts` to run without the terminal
 4. Click a failed test to jump directly to the failing line

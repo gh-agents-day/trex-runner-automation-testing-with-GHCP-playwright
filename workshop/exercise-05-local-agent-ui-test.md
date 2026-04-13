@@ -51,7 +51,7 @@ Save it as trex-runner/tests/trex-smoke.spec.ts
 From the `trex-runner` directory:
 
 ```bash
-npx playwright test
+npx playwright test tests/trex-smoke.spec.ts --reporter=list,html
 ```
 
 View the HTML report:

@@ -81,4 +81,4 @@ gh copilot suggest "run all tests in trex-runner and open the HTML report"
 
 ---
 
-**Next**: [Exercise 08 — Custom Agent Test Suite](exercise-08-skills.md)
+**Next**: [Exercise 08 — Custom Agent Test Suite](exercise-08-instruction-skills.md)

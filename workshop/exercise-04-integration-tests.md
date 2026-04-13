@@ -84,4 +84,4 @@ This opens an interactive report in your browser showing:
 
 ---
 
-**Next**: [Exercise 05 — Copilot Chat Agent Mode: Generate UI Tests](exercise-05-background-agent.md)
+**Next**: [Exercise 05 — Copilot Chat Agent Mode: Generate UI Tests](exercise-05-local-agent-ui-test.md)

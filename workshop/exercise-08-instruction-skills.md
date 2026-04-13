@@ -10,9 +10,10 @@
 
 Create `.github/copilot-instructions.md` at the repository root:
 
+Paste the following
+
 ```markdown
 # T-Rex Runner — Copilot Agent Instructions
-
 ## Application
 - UI: T-Rex Runner game at http://127.0.0.1:8081
 - API: Express high-score server at http://localhost:3000
@@ -36,6 +37,47 @@ Create `.github/copilot-instructions.md` at the repository root:
 - All Playwright tests: cd trex-runner && npx playwright test --reporter=list
 - Headed run: npx playwright test --headed
 - HTML report: npx playwright show-report
+```
+
+---
+
+## Step 1.5 — Showcase: Prove the Agent Reads Your Instructions
+
+Before generating the full suite, do this quick showcase to see the custom instructions working live.
+
+Open **Copilot Chat** → switch to **Agent Mode**, then send **exactly** this minimal prompt — no app details, no file paths:
+
+```
+Write a single Playwright test that verifies the high score displayed on the 
+T-Rex Runner page matches the value returned by the API.
+```
+
+**Watch what happens:**
+
+- Without `copilot-instructions.md`, Copilot would ask: *"What URL? What API endpoint? What locator?"*
+- **With** `copilot-instructions.md`, the agent already knows:
+  - UI is at `http://127.0.0.1:8080`
+  - API is `GET http://localhost:3000/score`
+  - High score locator: `getByLabel('high-score')` (from Test Conventions)
+  - File goes in `trex-runner/tests/`
+
+It should produce something like:
+
+```typescript
+test('high score displayed matches API value', async ({ page }) => {
+  await page.route('http://localhost:3000/score', route =>
+    route.fulfill({ json: { highScore: 42 } })
+  );
+  await page.goto('/');
+  await expect(page.getByLabel('high-score')).toContainText('42');
+});
+```
+
+**This is the showcase moment** — a two-sentence prompt produces a correct, runnable test because the agent has full app context baked in. Run it to confirm it passes:
+
+```bash
+cd trex-runner
+npx playwright test --grep "high score displayed matches" --reporter=list
 ```
 
 ---
@@ -89,7 +131,7 @@ The agent reads the source files, corrects the selectors, writes the updated tes
 ## Step 4 — Agent Mode: Discover Edge Cases
 
 ```
-Act as a QA engineer testing the T-Rex Runner app at http://127.0.0.1:8081.
+Act as a QA engineer testing the T-Rex Runner app at http://127.0.0.1:8080.
 Using what you know about the app from .github/copilot-instructions.md:
 1. Identify 3 untested edge cases or potential bugs
 2. Generate Playwright tests for each in trex-runner/tests/exploratory.spec.ts
