@@ -96,18 +96,36 @@ Testing-with-Agents-GHCP/
 
 ## Key Features Covered
 
-| # | Feature | Description | Exercise |
-|---|---------|-------------|----------|
-| 01 | VS Code & GitHub Copilot Setup | Install VS Code, enable the GitHub Copilot Chat extension, and verify inline suggestions and Chat work before starting automated testing | [Exercise 01](workshop-automation/exercise-01-setup-and-copilot.md) |
-| 02 | Application Server Setup | Launch the Express API server on port 3000 and the web UI server on port 8080, then verify both are accessible and the game is playable | [Exercise 02](workshop-automation/exercise-02-run-trex-runner.md) |
-| 03 | Playwright & Jest Unit Tests | Set up Playwright for E2E testing and generate Jest + Supertest unit tests for the Express API score endpoints without needing a live server | [Exercise 03](workshop-automation/exercise-03-initialize-playwright-unit-tests.md) |
-| 04 | Custom Agents & Shared Skill File | Create three custom GitHub Copilot agents and a shared `SKILL.md` defining locators, collision patterns, and reusable test logic used in all subsequent exercises | [Exercise 04](workshop-automation/exercise-04-create-agents.md) |
-| 05 | Game Launch Verification | Use Playwright MCP to verify the game page loads without errors, the canvas is visible at 800×200 pixels, and the high score displays correctly | [Exercise 05](workshop-automation/exercise-05-game-launch.md) |
-| 06 | Keyboard Interaction Testing | Use Playwright MCP to press Space, verify the dino jumps without page reload, and confirm the game loop continues running | [Exercise 06](workshop-automation/exercise-06-keyboard-interaction.md) |
-| 07 | Continuous Gameplay Testing | Monitor the game for 4 seconds to verify animation runs without errors, the score increments, and the URL stays unchanged | [Exercise 07](workshop-automation/exercise-07-continuous-gameplay.md) |
-| 08 | Collision & Auto-Restart Cycle | Let the dino collide naturally with an obstacle, verify a POST request fires to `/score/:value`, and confirm the page reloads automatically | [Exercise 08](workshop-automation/exercise-08-collision-restart.md) |
-| 09 | Multiple Jump Stability | Send 10 rapid Space presses and verify no JavaScript errors, the canvas remains visible, and the page stays stable under rapid input | [Exercise 09](workshop-automation/exercise-09-multiple-jumps.md) |
-| 10 | Post-Restart State Validation | Verify all UI elements and game state recover after a collision-triggered page reload, with the high score updated and game loop restarted | [Exercise 10](workshop-automation/exercise-10-canvas-after-restart.md) |
+### GitHub Copilot Features
+
+| Feature | What You Learn | Exercise |
+|---------|---------------|----------|
+| Copilot Chat — Setup & Chat Participants | Install and verify Copilot in VS Code; use `@vscode` and `@terminal` chat participants for contextual help | [Ex 01](workshop-automation/exercise-01-setup-and-copilot.md) |
+| Copilot Chat — Ask Mode | Prompt Copilot to scaffold `playwright.config.ts`, Jest unit tests, and Supertest API tests from a single chat message | [Ex 03](workshop-automation/exercise-03-initialize-playwright-unit-tests.md) |
+| Custom Agents (`.agent.md`) | Create three scoped agents — T-Rex Visual Validator, Gameplay Tester, and Collision Tester — each with a focused role | [Ex 04](workshop-automation/exercise-04-create-agents.md) |
+| Shared Skill File (`SKILL.md`) | Define a centralised automation reference loaded by all agents: accessibility locators, `disableCollision` pattern, score assertions, and API endpoints | [Ex 04](workshop-automation/exercise-04-create-agents.md) |
+| Copilot Chat — Agent Mode | Switch an agent live in Copilot Chat and delegate multi-file test generation to it via a natural language prompt | [Ex 05–10](workshop-automation/exercise-05-game-launch.md) |
+| Playwright MCP Server | Connect Copilot to a real browser via MCP — agent reads the accessibility tree, navigates, clicks, and presses keys without screenshots | [Ex 05–10](workshop-automation/exercise-05-game-launch.md) |
+| VS Code Browser Tab Sharing | Open the game in VS Code's built-in browser (`Quick Open Browser Tab`) and share it with agents so MCP controls the live tab | [Ex 05–10](workshop-automation/exercise-05-game-launch.md) |
+
+### Testing Techniques
+
+| Technique | What You Learn | Exercise |
+|-----------|---------------|----------|
+| Application infrastructure setup | Start the Express API (port 3000) and `http-server` UI (port 8080) and verify both are reachable before running any tests | [Ex 02](workshop-automation/exercise-02-run-trex-runner.md) |
+| Jest + Supertest — API unit tests | Test Express score endpoints in full isolation without spinning up a live server | [Ex 03](workshop-automation/exercise-03-initialize-playwright-unit-tests.md) |
+| Accessibility-based locators only | All Playwright locators use `getByLabel`, `getByRole`, or `getByText` — zero CSS selectors or XPath | [Ex 05–10](workshop-automation/exercise-05-game-launch.md) |
+| Canvas visibility & dimension assertions | Assert `getByLabel('game-canvas')` is visible and `boundingBox()` returns exactly 800×200 pixels | [Ex 05](workshop-automation/exercise-05-game-launch.md) |
+| JavaScript error monitoring | Register `page.on('pageerror')` before gameplay to capture silent failures that never surface in the UI | [Ex 05, 07, 09](workshop-automation/exercise-07-continuous-gameplay.md) |
+| Keyboard interaction (`page.press`) | Send `Space` keypress to trigger a jump and assert page stability after interaction | [Ex 06](workshop-automation/exercise-06-keyboard-interaction.md) |
+| `page.evaluate()` — game state access | Read `window.gameScore` via `page.evaluate()` because the live score is never written to the DOM | [Ex 06–10](workshop-automation/exercise-06-keyboard-interaction.md) |
+| `disableCollision()` runtime override | Override `window.gameOver` to a no-op at test runtime with `page.evaluate()` — no source code changes | [Ex 06, 07, 09](workshop-automation/exercise-06-keyboard-interaction.md) |
+| URL stability assertion | Confirm the page URL remains `http://127.0.0.1:8080/` throughout — detects silent reload loops | [Ex 06, 07, 09](workshop-automation/exercise-07-continuous-gameplay.md) |
+| Continuous gameplay monitoring | Run the game loop for 4 seconds watching for errors, frozen scores, and URL changes simultaneously | [Ex 07](workshop-automation/exercise-07-continuous-gameplay.md) |
+| Natural collision flow + request interception | Let the dino collide without disabling anything; use `page.waitForRequest()` to verify the POST hits `/score/:value` | [Ex 08](workshop-automation/exercise-08-collision-restart.md) |
+| Reload detection (`waitForNavigation`) | Assert `location.reload()` fires after game-over by waiting for a navigation event | [Ex 08, 10](workshop-automation/exercise-08-collision-restart.md) |
+| Rapid input stress testing | Fire 10 Space presses at 200 ms intervals and assert no errors, no freeze, and no unintended reload | [Ex 09](workshop-automation/exercise-09-multiple-jumps.md) |
+| Post-restart full-state validation | Re-assert canvas visibility, high-score display, and game loop after a collision-triggered page reload | [Ex 10](workshop-automation/exercise-10-canvas-after-restart.md) |
 
 ## Getting Started
 
