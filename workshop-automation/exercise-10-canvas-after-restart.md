@@ -121,7 +121,7 @@ npx playwright show-report
 ```
 
 ---
-
+ 
 ## Verify
 
 - [ ] Browser shows full collision → reload → restart cycle

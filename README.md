@@ -96,16 +96,18 @@ Testing-with-Agents-GHCP/
 
 ## Key Features Covered
 
-| Feature | Description |
-|---------|-------------|
-| Copilot Chat — Ask Mode | Generate test scaffolding, fix errors, and explain code inline |
-| Copilot Chat — Agent Mode | Delegate multi-file test generation to an autonomous agent |
-| Custom Agents | Scope agent behaviour with dedicated `.agent.md` files |
-| Shared Skill File | `SKILL.md` provides locators, patterns, and API contracts to every agent |
-| Playwright MCP Server | AI-driven, accessibility-selector-based test generation via MCP |
-| Jest + Supertest | Unit tests for Express API score logic with full isolation |
-| Playwright E2E Tests | Full game-flow tests including keyboard input, collision, and score validation |
-| HTML Test Reports | `npx playwright show-report` for rich visual test results |
+| # | Feature | Description | Exercise |
+|---|---------|-------------|----------|
+| 01 | VS Code & GitHub Copilot Setup | Install VS Code, enable the GitHub Copilot Chat extension, and verify inline suggestions and Chat work before starting automated testing | [Exercise 01](workshop-automation/exercise-01-setup-and-copilot.md) |
+| 02 | Application Server Setup | Launch the Express API server on port 3000 and the web UI server on port 8080, then verify both are accessible and the game is playable | [Exercise 02](workshop-automation/exercise-02-run-trex-runner.md) |
+| 03 | Playwright & Jest Unit Tests | Set up Playwright for E2E testing and generate Jest + Supertest unit tests for the Express API score endpoints without needing a live server | [Exercise 03](workshop-automation/exercise-03-initialize-playwright-unit-tests.md) |
+| 04 | Custom Agents & Shared Skill File | Create three custom GitHub Copilot agents and a shared `SKILL.md` defining locators, collision patterns, and reusable test logic used in all subsequent exercises | [Exercise 04](workshop-automation/exercise-04-create-agents.md) |
+| 05 | Game Launch Verification | Use Playwright MCP to verify the game page loads without errors, the canvas is visible at 800×200 pixels, and the high score displays correctly | [Exercise 05](workshop-automation/exercise-05-game-launch.md) |
+| 06 | Keyboard Interaction Testing | Use Playwright MCP to press Space, verify the dino jumps without page reload, and confirm the game loop continues running | [Exercise 06](workshop-automation/exercise-06-keyboard-interaction.md) |
+| 07 | Continuous Gameplay Testing | Monitor the game for 4 seconds to verify animation runs without errors, the score increments, and the URL stays unchanged | [Exercise 07](workshop-automation/exercise-07-continuous-gameplay.md) |
+| 08 | Collision & Auto-Restart Cycle | Let the dino collide naturally with an obstacle, verify a POST request fires to `/score/:value`, and confirm the page reloads automatically | [Exercise 08](workshop-automation/exercise-08-collision-restart.md) |
+| 09 | Multiple Jump Stability | Send 10 rapid Space presses and verify no JavaScript errors, the canvas remains visible, and the page stays stable under rapid input | [Exercise 09](workshop-automation/exercise-09-multiple-jumps.md) |
+| 10 | Post-Restart State Validation | Verify all UI elements and game state recover after a collision-triggered page reload, with the high score updated and game loop restarted | [Exercise 10](workshop-automation/exercise-10-canvas-after-restart.md) |
 
 ## Getting Started
 

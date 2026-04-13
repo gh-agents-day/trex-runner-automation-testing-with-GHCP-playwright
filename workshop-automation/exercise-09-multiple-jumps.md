@@ -105,4 +105,4 @@ Expected output:
 
 ---
 
-**Next**: [Exercise 06 — Canvas Presence After Restart](exercise-06-canvas-after-restart.md)
+**Next**: [Exercise 10 — Canvas Presence After Restart](exercise-10-canvas-after-restart.md)

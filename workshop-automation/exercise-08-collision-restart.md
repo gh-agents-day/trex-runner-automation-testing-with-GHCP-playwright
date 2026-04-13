@@ -111,4 +111,4 @@ Expected output:
 
 ---
 
-**Next**: [Exercise 05 — Multiple Jump Stability](exercise-05-multiple-jumps.md)
+**Next**: [Exercise 09 — Multiple Jump Stability](exercise-09-multiple-jumps.md)

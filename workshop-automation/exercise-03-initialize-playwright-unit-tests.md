@@ -59,4 +59,4 @@ Install the **Playwright Test for VSCode** extension (`ms-playwright.playwright`
 
 ---
 
-**Next**: [Exercise 04 — Integration Tests with Playwright](exercise-04-integration-tests.md)
+**Next**: [Exercise 04 — Create Agents & Skill File](exercise-04-create-agents.md)

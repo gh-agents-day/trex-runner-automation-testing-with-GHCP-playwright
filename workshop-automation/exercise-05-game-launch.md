@@ -143,4 +143,4 @@ Expected output:
 
 ---
 
-**Next**: [Exercise 02 — Keyboard Interaction (Jump)](exercise-02-keyboard-interaction.md)
+**Next**: [Exercise 06 — Keyboard Interaction (Jump)](exercise-06-keyboard-interaction.md)

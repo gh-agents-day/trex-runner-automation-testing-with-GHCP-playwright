@@ -88,9 +88,6 @@ Expected output:
 
 ---
 
-
----
-
 ## Verify
 
 - [ ] Browser tab stays on `http://127.0.0.1:8080/` for 4 seconds
@@ -100,4 +97,4 @@ Expected output:
 
 ---
 
-**Next**: [Exercise 04 — Collision & Restart](exercise-04-collision-restart.md)
+**Next**: [Exercise 08 — Collision & Restart](exercise-08-collision-restart.md)

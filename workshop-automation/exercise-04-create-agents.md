@@ -298,4 +298,4 @@ The 3 agents will now appear in the Copilot Chat mode dropdown.
 
 ---
 
-**Next**: [Exercise 01 — Game Launch Scenario](exercise-01-game-launch.md)
+**Next**: [Exercise 05 — Game Launch Scenario](exercise-05-game-launch.md)

@@ -97,4 +97,4 @@ Expected output:
 
 ---
 
-**Next**: [Exercise 03 — Continuous Gameplay](exercise-03-continuous-gameplay.md)
+**Next**: [Exercise 07 — Continuous Gameplay](exercise-07-continuous-gameplay.md)
