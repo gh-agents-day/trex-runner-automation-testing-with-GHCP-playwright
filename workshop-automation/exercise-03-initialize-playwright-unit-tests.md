@@ -39,14 +39,20 @@ export default defineConfig({
 });
 ```
 
-Create the tests directory inside `trex-runner/`:
-
-```bash
-cd trex-runner/api
-mkdir tests
-```
-
 Install the **Playwright Test for VSCode** extension (`ms-playwright.playwright`) — this adds a visual test runner under the Testing panel (flask icon in the Activity Bar).
+
+
+## Step 2 - Configure Playwright MCP via VS Code Tools (recommended)
+
+> Full reference: [Playwright MCP — Getting Started](https://playwright.dev/docs/getting-started-mcp)
+>
+> **Configure from the VS Code Tools panel**
+>
+> 1. In **Copilot Chat**, click the **Tools** icon 
+> 2. In the tools panel that opens, type **`playwright`** in the search field
+> 3. Locate **`microsoft.playwright-mcp`** 
+> 4. Click the **gear / settings icon** next to it — VS Code opens the MCP server's JSON mcp.json`
+> 5. Click **Start** (or the play icon) next to the server entry in the Tools panel to start the Playwright MCP server and you can see the server is **running**
 
 ---
 

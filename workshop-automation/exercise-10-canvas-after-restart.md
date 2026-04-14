@@ -1,4 +1,4 @@
-# Exercise 06 — Canvas Presence After Restart Scenario
+# Exercise 10 — Canvas Presence After Restart Scenario
 
 **Duration**: 10 minutes  
 **Copilot Feature**: Agent Mode + Playwright MCP  

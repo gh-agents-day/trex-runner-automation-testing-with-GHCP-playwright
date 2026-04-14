@@ -1,4 +1,4 @@
-# Exercise 04 — Collision & Restart Scenario
+# Exercise 08 — Collision & Restart Scenario
 
 **Duration**: 10 minutes  
 **Copilot Feature**: Agent Mode + Playwright MCP  

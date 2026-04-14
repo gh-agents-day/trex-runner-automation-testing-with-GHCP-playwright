@@ -22,9 +22,7 @@ node server.js
 
 Expected: `API running on 3000`
 
-**Verify (PowerShell):**
-```powershell
-Invoke-RestMethod http://localhost:3000/score
+Open http://localhost:3000/score in browser
 # Expected: { "highScore": 0 }
 ```
 
@@ -59,13 +57,7 @@ Open **http://127.0.0.1:8080** in your browser.
 1. Game canvas is visible at **http://127.0.0.1:8080**
 2. Press **Space** → dino starts running; press again to jump
 3. Let dino hit a cactus → score displays
-4. Verify the API received the score:
 
-```powershell
-Invoke-RestMethod -Method Post -Uri http://localhost:3000/score/42
-Invoke-RestMethod http://localhost:3000/score
-# Expected: { "highScore": 42 }
-```
 
 > **Leave both terminals running** throughout the entire workshop — all tests connect to these servers.
 

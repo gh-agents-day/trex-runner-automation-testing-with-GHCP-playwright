@@ -2,7 +2,7 @@
 
 **Duration**: 10 minutes  
 **Copilot Feature**: Agent Mode + Playwright MCP  
-**Agent**: `T-Rex Gameplay Tester` (`.vscode/trex-gameplay-agent.agent.md`)  
+**Agent**: `T-Rex Gameplay Tester` (`.github/trex-gameplay-agent.agent.md`)  
 **Goal**: Validate that the Space bar makes the dino jump and the page does not crash or reload after the interaction.
 
 ---
@@ -26,7 +26,7 @@ To watch the agent press Space and observe the dino jump **inside VS Code**:
 2. Enter `http://127.0.0.1:8080`
 3. Click the **share icon** near the browser address bar → **Allow**
 
-> **Headed MCP alternative**: Ensure `.vscode/mcp.json` has `"--headed"` in the playwright args (see Exercise 01, Step 1 for full config). A Chromium window opens and you can watch every key press live.
+> **Headed MCP alternative**: Ensure `.github/mcp.json` has `"--headed"` in the playwright args (see Exercise 01, Step 1 for full config). A Chromium window opens and you can watch every key press live.
 
 ---
 

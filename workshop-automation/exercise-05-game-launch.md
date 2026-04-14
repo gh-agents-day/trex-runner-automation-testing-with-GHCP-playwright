@@ -2,7 +2,7 @@
 
 **Duration**: 10 minutes  
 **Copilot Feature**: Agent Mode + Playwright MCP  
-**Agent**: `T-Rex Visual Validator` (`.vscode/trex-visual-agent.agent.md`)  
+**Agent**: `T-Rex Visual Validator` (`.github/trex-visual-agent.agent.md`)  
 **Goal**: Verify the T-Rex Runner game loads correctly — page renders without errors, canvas is visible, and dimensions are correct.
 
 ---
@@ -27,53 +27,6 @@ To watch the MCP agent automate the game **inside VS Code** (no external browser
 3. Look for the **share icon** (↑ arrow) near the browser address bar
 4. Click it → select **"Share this browser page with agents"** → click **Allow**
 
-> **Configure Playwright MCP via VS Code Tools (recommended)**
->
-> Full reference: [Playwright MCP — Getting Started](https://playwright.dev/docs/getting-started-mcp)
->
-> **Option A — Configure from the VS Code Tools panel (no manual JSON editing)**
->
-> 1. In **Copilot Chat**, click the **Tools** icon (wrench / `+` button next to the prompt box)
-> 2. In the tools panel that opens, type **`playwright`** in the search field
-> 3. Locate **`microsoft.playwright-mcp`** (`@playwright/mcp`) in the results
-> 4. Click the **gear / settings icon** next to it — VS Code opens the MCP server's JSON entry in `.vscode/mcp.json`
-> 5. Confirm (or paste) the configuration below, then save the file:
->
-> ```json
-> {
->   "servers": {
->     "playwright": {
->       "type": "stdio",
->       "command": "npx",
->       "args": ["@playwright/mcp@latest"]
->     }
->   }
-> }
-> ```
->
-> 6. Click **Start** (or the play icon) next to the server entry in the Tools panel to start the MCP server
-> 7. The status indicator next to `playwright` turns **green** — the server is running
->
-> **Option B — Headed mode (visible Chromium window)**
->
-> To watch the agent control a real browser window, add `"--headed"` to the `args` array in `.vscode/mcp.json`:
->
-> ```json
-> {
->   "servers": {
->     "playwright": {
->       "type": "stdio",
->       "command": "npx",
->       "args": ["@playwright/mcp@latest", "--headed"]
->     }
->   }
-> }
-> ```
->
-> Save the file, then restart the MCP server from the Tools panel (stop → start). VS Code will open a visible Chromium window that the agent controls directly.
-
----
-
 ## Step 2 — Start Both Servers
 
 ```bash
@@ -83,12 +36,11 @@ cd trex-runner/ui && npx http-server -p 8080
 # Terminal 2
 cd trex-runner/api && node server.js
 ```
-
 ---
 
 ## Step 3 — Switch to the T-Rex Visual Validator Agent
 
-> **Pre-requisite**: All 3 agents must be created first. If you haven't done this yet, complete [Exercise 00 — Create Agents & Skill File](exercise-00-create-agents.md) before continuing.
+> **Pre-requisite**: All 3 agents must be created first. If you haven't done this yet, complete [Exercise 04 — Create Agents & Skill File](exercise-04-create-agents.md) before continuing.
 
 1. Open **Copilot Chat** (`Ctrl+Alt+I`)
 2. Click the mode dropdown (currently showing **Ask** or **Edit**)

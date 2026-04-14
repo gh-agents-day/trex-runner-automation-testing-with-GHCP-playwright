@@ -1,7 +1,7 @@
 # Exercise 00 — Create Agents & Skill File
 
 **Duration**: 10 minutes  
-**Copilot Feature**: Agent Mode setup  
+**Copilot Feature**: Custom Agent and copilot skill setup  
 **Goal**: Create the 3 custom agents and the shared skill file that all automation exercises use. Do this once — then every exercise simply picks the right agent from the dropdown.
 
 ---
@@ -17,33 +17,14 @@
 
 ---
 
-## How Agent Files Work
-
-An **`.agent.md`** file in `.github/` registers a custom agent in VS Code Copilot Chat.  
-- The **YAML frontmatter** (`name`, `description`, `tools`) defines what the agent is called and what tools it can use.  
-- The **body** is the system prompt — it tells the agent how to behave, what locators to use, and what files to produce.  
-- VS Code scans `.github/` automatically. No extension or config needed — just save and reload.
-
-### How to Create a New Agent via VS Code UI
-
-Instead of creating the file manually, use the built-in VS Code UI:
-
-1. Click the **Chat Customizations** icon in the Copilot Chat panel (the pencil/settings icon at the top of the chat)
-2. Select **Agent**
-3. Click **Generate agents**
-4. Select **New agent (workspace)**
-5. VS Code creates a new `.agent.md` file in `.github/` and opens it in the editor
-6. Replace the generated content with the content provided in each step below
-
-> **Alternative**: Create the file manually at `.github/<agent-name>.agent.md` and paste the content directly.
-
----
-
 ## Step 1 — Create the Shared Skill File
 
 Create the file `.github/skills/trex-automation/SKILL.md` manually (this is a skill file, not an agent — use the file explorer to create it). Paste this content:
 
 ```markdown
+---
+name: trex-automation
+description: Automate interactions with the T-Rex Runner game using Playwright. Includes patterns for disabling collisions, mocking APIs, asserting scores, and verifying canvas size.
 # T-Rex Runner Playwright Automation Skill
 
 ## Accessibility Tree (Live MCP Observation)
@@ -120,7 +101,6 @@ npx playwright show-report
 
 ```markdown
 ---
----
 name: T-Rex Visual Validator
 description: >
   Automates visual validation for the T-Rex Runner game using Playwright MCP.
@@ -169,7 +149,6 @@ All Playwright MCP actions happen inside this shared tab — no external browser
 4. Replace the entire content with the following:
 
 ```markdown
----
 ---
 name: T-Rex Gameplay Tester
 description: >

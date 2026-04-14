@@ -1,4 +1,4 @@
-# Exercise 05 — Multiple Jump Stability Scenario
+# Exercise 09 — Multiple Jump Stability Scenario
 
 **Duration**: 10 minutes  
 **Copilot Feature**: Agent Mode + Playwright MCP  

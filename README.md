@@ -30,7 +30,7 @@ A fully automated test suite around the **T-Rex Runner** — a browser-based arc
 |---|----------|-----------------|-------------|
 | 01 | [Setup, VS Code & GitHub Copilot](workshop-automation/exercise-01-setup-and-copilot.md) | Copilot Chat — setup & orientation | Install extensions, verify inline completions and Chat |
 | 02 | [Run the T-Rex Runner Application](workshop-automation/exercise-02-run-trex-runner.md) | Terminal + Copilot Chat | Start API (port 3000) and game UI (port 8080) servers |
-| 03 | [Initialize Playwright & Unit Tests](workshop-automation/exercise-03-initialize-playwright-unit-tests.md) | Copilot Chat — Ask Mode | Scaffold Playwright config and Jest API unit tests |
+| 03 | [Initialize Playwright & Unit Tests](workshop-automation/exercise-03-initialize-playwright-unit-tests.md) | Copilot Chat — Ask Mode | Scaffold `playwright.config.ts` and initialize the Playwright test environment |
 | 04 | [Create Agents & Skill File](workshop-automation/exercise-04-create-agents.md) | Copilot Chat — Agent Mode | Create 3 custom agents and a shared `SKILL.md` automation reference |
 | 05 | [Game Launch Scenario](workshop-automation/exercise-05-game-launch.md) | T-Rex Visual Validator agent | Verify canvas loads, dimensions correct, high score shows zero |
 | 06 | [Keyboard Interaction (Jump)](workshop-automation/exercise-06-keyboard-interaction.md) | T-Rex Gameplay Tester agent | Validate Space bar jump and page stability |
@@ -53,47 +53,6 @@ Three custom agents (stored in `.github/`) each load a shared skill file before 
 
 The **skill file** (`.github/skills/trex-automation/SKILL.md`) contains the full automation reference: accessibility tree, `disableCollision` pattern, score assertion patterns, locator rules, and API endpoints. All agents load this skill before generating tests.
 
-## Workspace Structure After Workshop
-
-```
-Testing-with-Agents-GHCP/
-├── .github/
-│   ├── trex-visual-agent.agent.md        ← Exercise 04
-│   ├── trex-gameplay-agent.agent.md      ← Exercise 04
-│   ├── trex-collision-agent.agent.md     ← Exercise 04
-│   └── skills/
-│       └── trex-automation/
-│           └── SKILL.md                  ← Exercise 04
-├── trex-runner/
-│   ├── api/
-│   │   ├── server.js
-│   │   ├── package.json
-│   │   └── tests/
-│   │       └── score.test.js             ← Exercise 03
-│   ├── ui/
-│   │   ├── index.html
-│   │   └── game.js
-│   ├── tests/
-│   │   ├── integration.spec.ts           ← Exercise 03
-│   │   ├── trex-smoke.spec.ts            ← Exercise 03
-│   │   ├── trex-visual.spec.ts           ← Exercise 05
-│   │   ├── trex-gameplay.spec.ts         ← Exercises 06, 07, 09
-│   │   └── trex-mcp.spec.ts              ← Generated via MCP
-│   └── playwright.config.ts              ← Exercise 03
-└── workshop-automation/
-    ├── README.md
-    ├── exercise-01-setup-and-copilot.md
-    ├── exercise-02-run-trex-runner.md
-    ├── exercise-03-initialize-playwright-unit-tests.md
-    ├── exercise-04-create-agents.md
-    ├── exercise-05-game-launch.md
-    ├── exercise-06-keyboard-interaction.md
-    ├── exercise-07-continuous-gameplay.md
-    ├── exercise-08-collision-restart.md
-    ├── exercise-09-multiple-jumps.md
-    └── exercise-10-canvas-after-restart.md
-```
-
 ## Key Features Covered
 
 ### GitHub Copilot Features
@@ -101,10 +60,10 @@ Testing-with-Agents-GHCP/
 | Feature | What You Learn | Exercise |
 |---------|---------------|----------|
 | Copilot Chat — Setup & Chat Participants | Install and verify Copilot in VS Code; use `@vscode` and `@terminal` chat participants for contextual help | [Ex 01](workshop-automation/exercise-01-setup-and-copilot.md) |
-| Copilot Chat — Ask Mode | Prompt Copilot to scaffold `playwright.config.ts`, Jest unit tests, and Supertest API tests from a single chat message | [Ex 03](workshop-automation/exercise-03-initialize-playwright-unit-tests.md) |
+| Copilot Chat — Ask Mode | Prompt Copilot to scaffold `playwright.config.ts` and initialize the Playwright test environment with the correct `baseURL` and browser config | [Ex 03](workshop-automation/exercise-03-initialize-playwright-unit-tests.md) |
 | Custom Agents (`.agent.md`) | Create three scoped agents — T-Rex Visual Validator, Gameplay Tester, and Collision Tester — each with a focused role | [Ex 04](workshop-automation/exercise-04-create-agents.md) |
 | Shared Skill File (`SKILL.md`) | Define a centralised automation reference loaded by all agents: accessibility locators, `disableCollision` pattern, score assertions, and API endpoints | [Ex 04](workshop-automation/exercise-04-create-agents.md) |
-| Copilot Chat — Agent Mode | Switch an agent live in Copilot Chat and delegate multi-file test generation to it via a natural language prompt | [Ex 05–10](workshop-automation/exercise-05-game-launch.md) |
+| Copilot Chat — Agent Mode | Switch an agent live in Copilot Chat and delegate multi-file test generation to it via a natural language prompt | [Ex 04–10](workshop-automation/exercise-04-create-agents.md) |
 | Playwright MCP Server | Connect Copilot to a real browser via MCP — agent reads the accessibility tree, navigates, clicks, and presses keys without screenshots | [Ex 05–10](workshop-automation/exercise-05-game-launch.md) |
 | VS Code Browser Tab Sharing | Open the game in VS Code's built-in browser (`Quick Open Browser Tab`) and share it with agents so MCP controls the live tab | [Ex 05–10](workshop-automation/exercise-05-game-launch.md) |
 
@@ -113,7 +72,6 @@ Testing-with-Agents-GHCP/
 | Technique | What You Learn | Exercise |
 |-----------|---------------|----------|
 | Application infrastructure setup | Start the Express API (port 3000) and `http-server` UI (port 8080) and verify both are reachable before running any tests | [Ex 02](workshop-automation/exercise-02-run-trex-runner.md) |
-| Jest + Supertest — API unit tests | Test Express score endpoints in full isolation without spinning up a live server | [Ex 03](workshop-automation/exercise-03-initialize-playwright-unit-tests.md) |
 | Accessibility-based locators only | All Playwright locators use `getByLabel`, `getByRole`, or `getByText` — zero CSS selectors or XPath | [Ex 05–10](workshop-automation/exercise-05-game-launch.md) |
 | Canvas visibility & dimension assertions | Assert `getByLabel('game-canvas')` is visible and `boundingBox()` returns exactly 800×200 pixels | [Ex 05](workshop-automation/exercise-05-game-launch.md) |
 | JavaScript error monitoring | Register `page.on('pageerror')` before gameplay to capture silent failures that never surface in the UI | [Ex 05, 07, 09](workshop-automation/exercise-07-continuous-gameplay.md) |

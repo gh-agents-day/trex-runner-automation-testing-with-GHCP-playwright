@@ -1,4 +1,4 @@
-# Exercise 03 — Continuous Gameplay Scenario
+# Exercise 07 — Continuous Gameplay Scenario
 
 **Duration**: 10 minutes  
 **Copilot Feature**: Agent Mode + Playwright MCP  
