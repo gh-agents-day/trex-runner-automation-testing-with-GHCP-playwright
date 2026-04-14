@@ -63,4 +63,4 @@ Open **http://127.0.0.1:8080** in your browser.
 
 ---
 
-**Next**: [Exercise 03 — Initialize Playwright & Unit Tests](exercise-03-initialize-playwright-unit-tests.md)
+**Next**: [Exercise 03 — Initialize Playwright](exercise-03-initialize-playwright.md)

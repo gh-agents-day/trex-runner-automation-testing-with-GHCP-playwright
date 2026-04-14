@@ -1,4 +1,4 @@
-# Exercise 02 — Keyboard Interaction (Jump) Scenario
+# Exercise 06 — Keyboard Interaction (Jump) Scenario
 
 **Duration**: 10 minutes  
 **Copilot Feature**: Agent Mode + Playwright MCP  
@@ -22,11 +22,12 @@
 
 To watch the agent press Space and observe the dino jump **inside VS Code**:
 
-1. Press `Ctrl+Shift+P` → **Simple Browser: Show**
-2. Enter `http://127.0.0.1:8080`
-3. Click the **share icon** near the browser address bar → **Allow**
+1. Press `Ctrl+Shift+P` → type **Quick Open Browser Tab** → select **Quick Open Browser Tab**
+2. Enter `http://127.0.0.1:8080` and press Enter
+3. Look for the **share icon** (↑ arrow) near the browser address bar
+4. Click it → select **"Share this browser page with agents"** → click **Allow**
 
-> **Headed MCP alternative**: Ensure `.github/mcp.json` has `"--headed"` in the playwright args (see Exercise 01, Step 1 for full config). A Chromium window opens and you can watch every key press live.
+> **Headed MCP alternative**: Ensure `.vscode/mcp.json` has `"--headed"` in the playwright args (see [Exercise 05, Step 1](exercise-05-game-launch.md) for full config). A Chromium window opens and you can watch every key press live.
 
 ---
 
@@ -86,14 +87,14 @@ Expected output:
 
 ---
 
----
-
 ## Verify
 
+- [ ] VS Code browser (**Quick Open Browser Tab**) shows the game at `http://127.0.0.1:8080`
+- [ ] Agent is set to **T-Rex Gameplay Tester**
 - [ ] Browser shows dino jumping when Space is pressed
 - [ ] Page URL remains unchanged after jump
 - [ ] `trex-runner/tests/trex-gameplay.spec.ts` generated
-- [ ] Tests pass with `npx playwright test tests/trex-gameplay.spec.ts`
+- [ ] All tests pass with `npx playwright test tests/trex-gameplay.spec.ts`
 
 ---
 

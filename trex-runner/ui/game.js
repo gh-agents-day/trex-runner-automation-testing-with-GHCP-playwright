@@ -1,8 +1,14 @@
 const c=document.getElementById('game');
 const ctx=c.getContext('2d');
 const highScoreEl=document.getElementById('highscore');
+const statusEl=document.getElementById('status');
+const startBtn=document.getElementById('startBtn');
+
+// Game state: 'idle' | 'running' | 'over'
+let state='idle';
 let y=150,vy=0,g=1,score=0;
 let obs=800;
+let rafId=null;
 
 // Dino SVG asset (pixel-art T-Rex style)
 const dinoImg=new Image();
@@ -46,29 +52,82 @@ fetch('http://localhost:3000/score')
   .then(data=>{ if(highScoreEl) highScoreEl.textContent='High Score: '+data.highScore; })
   .catch(()=>{});
 
-document.addEventListener('keydown',()=>{if(y>=150)vy=-15});
+// Jump on Space / any key — only while game is running
+document.addEventListener('keydown',e=>{
+  if(state==='running' && y>=150) vy=-15;
+});
+
+// Start / Restart button
+startBtn.addEventListener('click',()=>{
+  if(state==='idle'||state==='over') startGame();
+});
+
+function setStatus(msg){
+  if(statusEl) statusEl.textContent=msg;
+}
+
+function drawIdle(){
+  ctx.clearRect(0,0,800,200);
+  ctx.fillStyle='#bbb';
+  ctx.fillRect(0,193,800,3);
+  ctx.drawImage(dinoImg,40,150-18,44,44);
+  ctx.fillStyle='#aaa';
+  ctx.font='14px sans-serif';
+  ctx.fillText('Score: 0',10,18);
+}
+
+function startGame(){
+  // Reset state
+  y=150; vy=0; score=0; obs=800;
+  state='running';
+  window.gameScore=0;
+  startBtn.textContent='Restart';
+  setStatus('Running — press Space to jump!');
+  if(rafId) cancelAnimationFrame(rafId);
+  loop();
+}
 
 function gameOver(){
+  state='over';
+  startBtn.textContent='Restart';
+  setStatus('Game Over! Score: '+score+' — click Restart to play again');
   fetch('http://localhost:3000/score/'+score,{method:'POST'})
-    .finally(()=>location.reload());
+    .then(r=>r.json())
+    .then(data=>{
+      if(highScoreEl) highScoreEl.textContent='High Score: '+data.highScore;
+    })
+    .catch(()=>{});
 }
 
 function loop(){
- ctx.clearRect(0,0,800,200);
- vy+=g;y+=vy;if(y>150){y=150;vy=0}
- obs-=6;if(obs<0){obs=800;score++}
- window.gameScore = score;
- // Ground line
- ctx.fillStyle='#bbb';
- ctx.fillRect(0,193,800,3);
- // Dino: 44x44 pixel-art T-Rex, bottom aligned to ground
- ctx.drawImage(dinoImg,40,y-18,44,44);
- // Cactus: 30x55 green cactus, bottom aligned to ground
- ctx.drawImage(cactusImg,obs,138,30,55);
- ctx.fillStyle='#555';
- ctx.font='14px sans-serif';
- ctx.fillText('Score: '+score,10,18);
- if(obs<70&&obs>50&&y>140)gameOver();
- else requestAnimationFrame(loop);
+  // Safety guard — never run unless game is actively started
+  if(state!=='running') return;
+
+  ctx.clearRect(0,0,800,200);
+  vy+=g; y+=vy; if(y>150){y=150;vy=0}
+  obs-=6; if(obs<0){obs=800;score++}
+  window.gameScore=score;
+
+  // Ground line
+  ctx.fillStyle='#bbb';
+  ctx.fillRect(0,193,800,3);
+  // Dino
+  ctx.drawImage(dinoImg,40,y-18,44,44);
+  // Cactus
+  ctx.drawImage(cactusImg,obs,138,30,55);
+  // Score
+  ctx.fillStyle='#555';
+  ctx.font='14px sans-serif';
+  ctx.fillText('Score: '+score,10,18);
+
+  if(obs<70&&obs>50&&y>140){
+    gameOver();
+  } else {
+    rafId=requestAnimationFrame(loop);
+  }
 }
-loop();
+
+// Draw idle frame once dino image is loaded
+dinoImg.onload=function(){
+  if(state==='idle') drawIdle();
+};

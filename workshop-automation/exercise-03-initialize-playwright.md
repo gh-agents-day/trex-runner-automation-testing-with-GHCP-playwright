@@ -1,8 +1,8 @@
-# Exercise 03 — Initialize Playwright & Unit Tests with Copilot Chat
+# Exercise 03 — Initialize Playwright
 
 **Duration**: 10 minutes  
 **Copilot Feature**: Copilot Chat — Ask Mode  
-**Goal**: Set up Playwright in the T-Rex Runner project and use Copilot Chat to generate Jest unit tests for the API score logic using supertest — no browser required.
+**Goal**: Set up Playwright in the T-Rex Runner project and configure the test environment ready for browser-based automation.
 
 ---
 
