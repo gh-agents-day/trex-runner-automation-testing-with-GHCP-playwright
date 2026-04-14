@@ -60,10 +60,10 @@ The **skill file** (`.github/skills/trex-automation/SKILL.md`) contains the full
 | Feature | What You Learn | Exercise |
 |---------|---------------|----------|
 | Copilot Chat — Setup & Chat Participants | Install and verify Copilot in VS Code; use `@vscode` and `@terminal` chat participants for contextual help | [Ex 01](workshop-automation/exercise-01-setup-and-copilot.md) |
-| Copilot Chat — Ask Mode | Prompt Copilot to scaffold `playwright.config.ts` and initialize the Playwright test environment with the correct `baseURL` and browser config | [Ex 03](workshop-automation/exercise-03-initialize-playwright-unit-tests.md) |
+| Copilot Chat — Ask Mode | Prompt Copilot to scaffold `playwright.config.ts`, Jest unit tests, and Supertest API tests from a single chat message | [Ex 03](workshop-automation/exercise-03-initialize-playwright-unit-tests.md) |
 | Custom Agents (`.agent.md`) | Create three scoped agents — T-Rex Visual Validator, Gameplay Tester, and Collision Tester — each with a focused role | [Ex 04](workshop-automation/exercise-04-create-agents.md) |
 | Shared Skill File (`SKILL.md`) | Define a centralised automation reference loaded by all agents: accessibility locators, `disableCollision` pattern, score assertions, and API endpoints | [Ex 04](workshop-automation/exercise-04-create-agents.md) |
-| Copilot Chat — Agent Mode | Switch an agent live in Copilot Chat and delegate multi-file test generation to it via a natural language prompt | [Ex 04–10](workshop-automation/exercise-04-create-agents.md) |
+| Copilot Chat — Agent Mode | Switch an agent live in Copilot Chat and delegate multi-file test generation to it via a natural language prompt | [Ex 05–10](workshop-automation/exercise-05-game-launch.md) |
 | Playwright MCP Server | Connect Copilot to a real browser via MCP — agent reads the accessibility tree, navigates, clicks, and presses keys without screenshots | [Ex 05–10](workshop-automation/exercise-05-game-launch.md) |
 | VS Code Browser Tab Sharing | Open the game in VS Code's built-in browser (`Quick Open Browser Tab`) and share it with agents so MCP controls the live tab | [Ex 05–10](workshop-automation/exercise-05-game-launch.md) |
 
@@ -72,6 +72,7 @@ The **skill file** (`.github/skills/trex-automation/SKILL.md`) contains the full
 | Technique | What You Learn | Exercise |
 |-----------|---------------|----------|
 | Application infrastructure setup | Start the Express API (port 3000) and `http-server` UI (port 8080) and verify both are reachable before running any tests | [Ex 02](workshop-automation/exercise-02-run-trex-runner.md) |
+| Jest + Supertest — API unit tests | Test Express score endpoints in full isolation without spinning up a live server | [Ex 03](workshop-automation/exercise-03-initialize-playwright-unit-tests.md) |
 | Accessibility-based locators only | All Playwright locators use `getByLabel`, `getByRole`, or `getByText` — zero CSS selectors or XPath | [Ex 05–10](workshop-automation/exercise-05-game-launch.md) |
 | Canvas visibility & dimension assertions | Assert `getByLabel('game-canvas')` is visible and `boundingBox()` returns exactly 800×200 pixels | [Ex 05](workshop-automation/exercise-05-game-launch.md) |
 | JavaScript error monitoring | Register `page.on('pageerror')` before gameplay to capture silent failures that never surface in the UI | [Ex 05, 07, 09](workshop-automation/exercise-07-continuous-gameplay.md) |
